@@ -1,1 +1,1 @@
-Project for delivery Serive
+Project for delivery service
