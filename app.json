@@ -1,26 +1,36 @@
 {
   "expo": {
-    "platforms": ["android"],
+    "platforms": [
+      "android"
+    ],
     "plugins": [
       [
-       "expo-camera",
+        "expo-camera",
         {
           "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera",
           "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone",
           "recordAudioAndroid": true
         }
+        
       ]
     ],
     "name": "ExpressMove",
     "slug": "ExpressMove",
     "version": "1.0.0",
+    "description":"App for deliveryMan related with CRM delivery",
    
     "android": {
       "permissions": [
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.dridihatem.ExpressMove"
+      "package": "com.dridihatem.ExpressMove",
+      "versionCode": 1
+    },
+    "extra": {
+      "eas": {
+        "projectId": "09ee17fb-a956-4f6e-813a-cc12c8d23dbf"
+      }
     }
   }
 }

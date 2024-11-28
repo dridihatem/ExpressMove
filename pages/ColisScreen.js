@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react';
 import { View,FlatList, TouchableOpacity, Modal,ActivityIndicator,Linking, Alert } from 'react-native';
 import {Text,TextInput,Button } from 'react-native-paper';
 import axios from 'axios';
-import styles from '../assets/Styles'; // Import the styles
+import styles from '../assets/Styles'; 
 import apiUrl from '../components/urlApi';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
@@ -127,6 +127,25 @@ const [recordId, setRecordId] = useState(null);
     }
     
   };
+
+  const updateDelivery = async(id) => {
+    console.log(id);
+    try {       
+        const response = await axios.post(apiUrl+`/api/updateDelivery`, {
+          id: id
+        }
+    );
+        setModalVisible(false);
+        handleRefresh();
+        Alert.alert('Succès','Colis livré avec succès');
+        }  
+    catch (error) {
+    console.error("Error saving signature:", error);
+    Alert.alert("Error", "Failed to save signature.");
+    }
+    }
+    
+  
   
     const parcelsListEncours = async (pageNumber) => {
          try {
@@ -215,6 +234,8 @@ const [recordId, setRecordId] = useState(null);
                    parcelsListBloque(page).then(() => setLoadingBloque(false)); 
                } 
            }; 
+
+         
 
         const handleRefresh = () => { 
                 setRefreshing(true); 
@@ -398,7 +419,8 @@ const [recordId, setRecordId] = useState(null);
                {selectedItem && (
                    <>
                    <View style={styles.modalSubDescription}>
-                       <Text style={styles.modalTitle}># {selectedItem.tracking_ref}</Text>
+                       <Text style={styles.modalTitleColis}># {selectedItem.tracking_ref}</Text>
+                       <Button  icon="update" mode="contained" theme={{ background: '#ff8c00' ,borderRadius:'5',elevation:8 }} onPress={() => updateDelivery(selectedItem.id)}> Marquer comme livré</Button>
                        <Text style={styles.modalText}><Icon name={'person'} size={18}/> Expéditeur: {selectedItem.merchant}</Text>
                        <Text style={styles.modalText}><Icon name={'person'} size={18}/> Client: {selectedItem.customer_name}</Text>
                        <Text style={styles.modalText}><Icon name={'map'} size={18}/> Gouvernerat: {selectedItem.customer_gouvernerat}</Text>
@@ -410,8 +432,7 @@ const [recordId, setRecordId] = useState(null);
                        <Text  style={styles.modalText}><Icon name={'outbox'} size={18}/> Date de livraison: {selectedItem.delivery_date}</Text>
                        <Text  style={styles.modalText}><Icon name={'app-blocking'} size={18}/> Nombre de tentative: {selectedItem.tentative}</Text>
                        
-                      {selectedItem.tentative < 3 ?
-                          <>
+                      
                           <Text>Mettre à jour le tentative</Text>
                            <View style={styles.row}>
                            
@@ -425,13 +446,10 @@ const [recordId, setRecordId] = useState(null);
                             />
                            </View>
                            <View style={styles.column}>
-                           <Button  icon="update" mode="contained" theme={{ background: '#ff8c00' ,borderRadius:'5',elevation:8 }} onPress={updateDatabase}>Mettre à jour</Button>
+                           <Button  icon="update" mode="contained" theme={{ background: '#ff8c00' ,borderRadius:'5',elevation:8 }}  onPress={updateDatabase} >Mettre à jour</Button>
                            </View>
                            </View>
-                            </>
-                            :
-                           <Text style={styles.colorRed}>Le client a passé le nombre de tentatives</Text>
-                      }
+                           
                       
                    </View> 
                    </>
@@ -478,7 +496,7 @@ const [recordId, setRecordId] = useState(null);
                {selectedItem && (
                    <>
                    <View style={styles.modalSubDescription}>
-                       <Text style={styles.modalTitle}># {selectedItem.tracking_ref}</Text>
+                       <Text style={styles.modalTitleColis}># {selectedItem.tracking_ref}</Text>
                        <Text style={styles.modalText}><Icon name={'person'} size={18}/> Expéditeur: {selectedItem.merchant}</Text>
                        <Text style={styles.modalText}><Icon name={'person'} size={18}/> Client: {selectedItem.customer_name}</Text>
                        <Text style={styles.modalText}><Icon name={'map'} size={18}/> Gouvernerat: {selectedItem.customer_gouvernerat}</Text>
@@ -554,7 +572,7 @@ const [recordId, setRecordId] = useState(null);
                {selectedItem && (
                    <>
                    <View style={styles.modalSubDescription}>
-                       <Text style={styles.modalTitle}># {selectedItem.tracking_ref}</Text>
+                       <Text style={styles.modalTitleColis}># {selectedItem.tracking_ref}</Text>
                        <Text style={styles.modalText}><Icon name={'person'} size={18}/> Expéditeur: {selectedItem.merchant}</Text>
                        <Text style={styles.modalText}><Icon name={'person'} size={18}/> Client: {selectedItem.customer_name}</Text>
                        <Text style={styles.modalText}><Icon name={'map'} size={18}/> Gouvernerat: {selectedItem.customer_gouvernerat}</Text>

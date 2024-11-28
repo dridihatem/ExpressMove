@@ -9,9 +9,11 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const data = [
-  { id: '1', title: 'Colis', icon: 'inbox', screen:'Colis' },
-  { id: '2', title: 'Pickup', icon: 'check', screen:'Scan' },
-  { id: '3', title: 'Paiement', icon: 'money', screen:'Reglement' },
+  
+  { id: '1', title: 'Ramassage', icon: 'house', screen:'Ramassage' },
+  { id: '2', title: 'Colis', icon: 'inbox', screen:'Colis' },
+  { id: '3', title: 'Pickup', icon: 'check', screen:'Scan' },
+  { id: '4', title: 'Paiement', icon: 'money', screen:'Reglement' },
 ];
 
 

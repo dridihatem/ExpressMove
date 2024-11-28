@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Button, FlatList, ActivityIndicator } from 'react-native';
 import { Provider as PaperProvider } from 'react-native-paper';
 import { DataTable } from 'react-native-paper';
+import styles from '../assets/Styles'; 
 import apiUrl from '../components/urlApi';
 import axios from 'axios';
 
