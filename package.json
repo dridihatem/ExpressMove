@@ -2,15 +2,23 @@
   "name": "my-app",
   "version": "1.0.0",
   "main": "index.js",
-  
-    "expo": {
-      "doctor": {
-        "reactNativeDirectoryCheck": {
-          "listUnknownPackages": false
-        }
+  "expo": {
+    "doctor": {
+      "reactNativeDirectoryCheck": {
+        "exclude":[
+          "@react-native-async-storage/async-storage",
+          "@react-navigation/native",
+          "@react-navigation/native-stack",
+          "@react-navigation/stack",
+          "react-native-gesture-handler",
+          "react-native-safe-area-context",
+          "react-native-screens",
+          "react-native-webview"
+        ],
+        "listUnknownPackages": true
       }
     }
-  ,
+  },
   "scripts": {
     "start": "expo start --dev-client",
     "android": "expo run:android",
